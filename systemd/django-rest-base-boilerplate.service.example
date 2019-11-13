@@ -1,0 +1,16 @@
+[Unit]
+Description=django-rest-base-boilerplate uvicorn service
+
+[Service]
+Restart=always
+KillSignal=SIGTERM
+User=devluci
+Group=devluci
+WorkingDirectory=/home/devluci/django-rest-base-boilerplate
+ExecStart=/bin/bash -c "./venv/bin/uvicorn project.asgi:application --port 11177 --reload >> /home/devluci/django-rest-base-boilerplate/log/uvicorn.log 2>&1"
+# ExecStart=/bin/bash -c "./venv/bin/uvicorn project.asgi:application --port 11177 --workers 4 >> /home/devluci/django-rest-base-boilerplate/log/uvicorn.log 2>&1"
+ExecReload=/bin/kill -HUP $MAINPID
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target

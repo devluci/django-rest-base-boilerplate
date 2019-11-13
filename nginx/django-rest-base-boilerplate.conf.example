@@ -1,0 +1,31 @@
+server {
+        listen 443 ssl http2;
+        listen [::]:443 ssl http2;
+        charset utf-8;
+
+        server_name example.com;
+
+        server_tokens off;
+
+        ssl on;
+        ssl_verify_client on;
+        ssl_certificate /home/devluci/django-rest-base-boilerplate/nginx/cloudflare.pem;
+        ssl_certificate_key /home/devluci/django-rest-base-boilerplate/nginx/cloudflare.key;
+        ssl_client_certificate /home/devluci/django-rest-base-boilerplate/nginx/cloudflare.crt;
+
+        error_page 403 404 500 @error;
+
+        location /assets {
+                alias /home/devluci/django-rest-base-boilerplate/assets;
+        }
+
+        location / {
+                proxy_pass http://localhost:11177;
+                include /home/devluci/django-rest-base-boilerplate/nginx/asgi_params;
+        }
+
+        location @error {
+                root /home/devluci/django-rest-base-boilerplate/templates;
+                try_files /404.html /404.html;
+        }
+}

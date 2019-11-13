@@ -1,0 +1,13 @@
+[databases]
+django_rest_base_boilerplate = host=postgres.example.com auth_user=django_rest_base_boilerplate user=django_rest_base_boilerplate@postgres password=
+
+[pgbouncer]
+logfile = /var/log/postgresql/pgbouncer.log
+pidfile = /var/run/postgresql/pgbouncer.pid
+
+listen_addr = 127.0.0.1
+listen_port = 6543
+auth_type = trust
+
+server_idle_timeout = 60
+max_client_conn = 1000
