@@ -45,3 +45,7 @@ Or, you can customize by alter some text in **all** codes and filenames.
 | django-rest-base-boilerplate | Project name |
 
 
+
+# License
+
+[MIT](./LICENSE)
